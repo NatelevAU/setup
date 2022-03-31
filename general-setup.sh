@@ -1,13 +1,14 @@
 #!/bin/bash
+export CONSTANTS="https://raw.githubusercontent.com/NatelevAU/setup/main/constants.sh"
 
 # setup.sh - bash script to set up a new environment
-
-source "https://raw.githubusercontent.com/NatelevAU/setup/main/constants.sh"
 
 
 
 # Main function to check which OS is running
 main() {
+	source "$CONSTANTS"
+	
 	echo "OSTYPE is $OSTYPE"
 	case "$OSTYPE" in
 		linux-gnu*) linux_setup ;; # Linux
