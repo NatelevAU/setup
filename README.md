@@ -5,19 +5,13 @@
 
 # Template
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/NatelevAU/setup/Test)](https://github.com/NatelevAU/template-repository/actions)
-[![GitHub](https://img.shields.io/github/license/NatelevAU/setup)](https://choosealicense.com/licenses/mit/)
-
-## Setup
-
-```bash
-Add setup instructions here
-```
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/NatelevAU/setup/Test)](https://github.com/NatelevAU/setup/actions)
+[![GitHub License](https://img.shields.io/github/license/NatelevAU/setup)](https://choosealicense.com/licenses/mit/)
 
 ## Usage
 
 ```bash
-Add usage instructions here
+wget -qO- https://raw.githubusercontent.com/NatelevAU/setup/main/general-setup.sh | sudo bash
 ```
 
 ## Author
