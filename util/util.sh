@@ -16,7 +16,7 @@ export UBUNTU_HELPER_PATH="https://raw.githubusercontent.com/NatelevAU/setup/mai
 # Helper functions
 
 run_file() {
-	wget -qO- "$1" | sudo bash
+	bash <(curl -s "$1")
 }
 
 echo "test"

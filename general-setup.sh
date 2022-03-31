@@ -1,6 +1,6 @@
 #!/bin/bash
 export UTIL="https://raw.githubusercontent.com/NatelevAU/setup/main/util/util.sh"
-wget -qO- "$UTIL" | sudo bash
+sudo bash <(curl -s "$UTIL")
 
 # setup.sh - bash script to set up a new environment
 
