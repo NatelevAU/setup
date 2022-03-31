@@ -24,5 +24,14 @@ general_setup() {
 
 
 
+# Helper functions
+
+run_file() {
+	bash <(curl -s "$1")
+}
+export -f run_file
+
+
+
 general_setup
 
