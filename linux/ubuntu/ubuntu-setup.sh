@@ -1,5 +1,6 @@
 #!/bin/bash
-source "$CONSTANTS"
+
+
 
 echo "Starting setup..."
 

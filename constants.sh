@@ -3,6 +3,6 @@
 
 
 # URL constants
-LINUX_SETUP_URL="https://raw.githubusercontent.com/NatelevAU/setup/main/linux/linux-setup.sh"
-UBUNTU_SETUP_URL="https://raw.githubusercontent.com/NatelevAU/setup/main/linux/ubuntu/ubuntu-setup.sh"
+LINUX_SETUP_PATH="https://raw.githubusercontent.com/NatelevAU/setup/main/linux/linux-setup.sh"
+UBUNTU_SETUP_PATH="https://raw.githubusercontent.com/NatelevAU/setup/main/linux/ubuntu/ubuntu-setup.sh"
 
