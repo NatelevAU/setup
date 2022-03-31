@@ -19,6 +19,8 @@ run_file() {
 	wget -qO- "$1" | sudo bash
 }
 
+echo "test"
+
 
 
 export -f run_file
