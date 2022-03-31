@@ -3,7 +3,7 @@
 <!-- Uncomment below to add a logo -->
 <!-- <img src="logo.png" height="192px" align="right"/> -->
 
-# Template
+# Setup
 
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/NatelevAU/setup/Test)](https://github.com/NatelevAU/setup/actions)
 [![GitHub License](https://img.shields.io/github/license/NatelevAU/setup)](https://choosealicense.com/licenses/mit/)
