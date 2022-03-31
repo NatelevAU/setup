@@ -36,7 +36,6 @@ export UBUNTU_HELPER_PATH="https://raw.githubusercontent.com/NatelevAU/setup/mai
 run_file() {
 	wget -qO- "$1" | sudo bash
 }
-export -f run_file
 
 
 
