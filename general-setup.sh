@@ -2,6 +2,8 @@
 
 # setup.sh - bash script to set up a new environment
 
+source "https://raw.githubusercontent.com/NatelevAU/setup/main/constants.sh"
+
 
 
 # Main function to check which OS is running
@@ -27,7 +29,7 @@ linux_setup() {
 	LINUX_ID_LIKE=$(cat /etc/*-release | grep "^ID_LIKE=" | sed 's/ID_LIKE=//')
 	LINUX_VERSION_ID=$(cat /etc/*-release | grep "^VERSION_ID=" | sed 's/VERSION_ID=//')
 	
-	echo "Running on $LINUX_ID (like $LINUX_ID_LIKE)"
+	echo "Running on $LINUX_ID $LINUX_VERSION_ID (like $LINUX_ID_LIKE)"
 	wget -qO- "$LINUX_SETUP_URL" | sudo bash # Run general linux setup
 	
 	case "$LINUX_ID" in
@@ -42,12 +44,6 @@ linux_setup() {
 ubuntu_setup() {
 	wget -qO- "$UBUNTU_SETUP_URL" | sudo bash
 }
-
-
-
-# Constants
-LINUX_SETUP_URL="https://raw.githubusercontent.com/NatelevAU/setup/main/linux/linux-setup.sh"
-UBUNTU_SETUP_URL="https://raw.githubusercontent.com/NatelevAU/setup/main/linux/ubuntu/ubuntu-setup.sh"
 
 
 
