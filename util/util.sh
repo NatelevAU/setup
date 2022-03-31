@@ -3,14 +3,15 @@
 
 
 util() {
-	set_constants
+	export_constants
+	export_functions
 }
 
 
 
 # URL constants
 
-set_constants() {
+export_constants() {
 	export UTIL="https://raw.githubusercontent.com/NatelevAU/setup/main/util/util.sh"
 
 	export LINUX_SETUP_PATH="https://raw.githubusercontent.com/NatelevAU/setup/main/linux/linux-setup.sh"
@@ -23,8 +24,14 @@ set_constants() {
 
 # Helper functions
 
-export run_file() {
+run_file() {
 	wget -qO- "$1" | sudo bash
+}
+
+
+
+export_functions() {
+	export -f run_file
 }
 
 
