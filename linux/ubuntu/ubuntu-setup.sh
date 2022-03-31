@@ -1,26 +1,5 @@
 #!/bin/bash
-
-
-
-echo "Starting setup..."
-
-# System variables
-export LANGUAGE=C.UTF-8
-export LANG=C.UTF-8
-export LC_ALL=C.UTF-8
-
-
-# Set up variables
-UPDATE="apt-get -y update"
-INSTALL="apt-get -y -o Dpkg::Options::=--force-confold install"
-UPGRADE="apt-get -y dist-upgrade"
-AUTOREMOVE="apt-get -y autoremove"
-ADDREPOSITORY="add-apt-repository"
-SNAP_INSTALL="sudo snap install --classic"
-
-# Remove duplicate configurations to avoid repository update warnings
-# TODO Figure out why this is necessary
-sudo rm -rf /etc/apt/sources.list.d/google.list
+source "$UBUNTU_HELPER_PATH"
 
 
 # Check sudo is installed
@@ -31,62 +10,6 @@ $INSTALL sudo
 if [[ "$EUID" -ne 0 ]]; then
   echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
 fi
-
-# Set up functions
-packageexists() {
-  OUTPUT="$(dpkg -s "$1" 2>&1 > /dev/null)"
-  if [[ -z "$OUTPUT" ]]; then
-    echo "$1 is already installed"
-    return 0 # true
-  else
-    return 1 # false
-  fi
-}
-install () {
-  for var in "$@"; do
-    if ! packageexists "$var"; then
-      echo "Installing $var..."
-      sudo DEBIAN_FRONTEND=noninteractive $INSTALL $var
-    fi
-  done
-}
-snap_install() {
-  for var in "$@"; do
-    echo "Installing $var..."
-    $SNAP_INSTALL $var
-  done
-}
-url_install() {
-  if ! packageexists "$1"; then
-    wget -q "$2"
-    FILENAME=$(basename "$var")
-    dpkg -i "$FILENAME"
-    rm -rf "$FILENAME"
-  fi
-}
-update() {
-  echo "Running update..."
-  sudo DEBIAN_FRONTEND=noninteractive $UPDATE
-}
-upgrade() {
-  echo "Running upgrade..."
-  sudo DEBIAN_FRONTEND=noninteractive $UPGRADE
-}
-autoremove() {
-  echo "Running autoremove..."
-  sudo DEBIAN_FRONTEND=noninteractive $AUTOREMOVE
-}
-addrepository() {
-  echo "Adding repository $1..."
-  sudo $ADDREPOSITORY "$1"
-}
-repositoryexists() {
-  if [[ -z $(find /etc/apt/ -name *.list | xargs cat | grep "$(echo "$1" | sed 's/\[/\\[/g' | sed 's/\]/\\]/g')") ]]; then
-    return 0 # false
-  else
-    return 1 # true
-  fi
-}
 
 # Install SSH keys
 # TODO: Generate/install automatically
