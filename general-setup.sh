@@ -10,15 +10,6 @@ LINUX_SETUP_PATH="$CURR_DIR/linux/linux-setup.sh"
 
 
 
-
-# Helper functions
-
-run_file() {
-	wget -qO- "$1" | sudo bash
-}
-
-
-
 # General setup function to check which OS is running
 general_setup() {
 	
