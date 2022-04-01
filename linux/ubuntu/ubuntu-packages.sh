@@ -5,10 +5,6 @@
 # Install packages required to add custom repositories
 install apt-utils ca-certificates curl gpg libssl-dev software-properties-common wget
 
-# Set locale
-# echo "$LOCALE" > "/etc/default/locale"
-# TODO Figure out what this is
-
 
 
 # Add custom repositories
