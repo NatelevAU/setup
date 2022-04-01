@@ -4,32 +4,34 @@
 
 # Ubuntu constants
 
-export UPDATE="DEBIAN_FRONTEND=noninteractive apt-get -y update"
-export UPGRADE="DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade"
-export AUTOREMOVE="DEBIAN_FRONTEND=noninteractive apt-get -y autoremove"
+export DEBIAN_FRONTEND="noninteractive"
 
-export ADDREPOSITORY="DEBIAN_FRONTEND=noninteractive add-apt-repository"
-export INSTALL="DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::=--force-confold install"
-export INSTALL_FILE="DEBIAN_FRONTEND=noninteractive dpkg -i"
-export SNAP_INSTALL="DEBIAN_FRONTEND=noninteractive sudo snap install --classic"
+export UPDATE="apt-get -y update"
+export UPGRADE="apt-get -y dist-upgrade"
+export AUTOREMOVE="apt-get -y autoremove"
+
+export ADDREPOSITORY="add-apt-repository"
+export INSTALL="apt-get -y -o Dpkg::Options::=--force-confold install"
+export INSTALL_FILE="dpkg -i"
+export SNAP_INSTALL="sudo snap install --classic"
 
 
 
 # Linux helper functions
 
-export update() {
+update() {
   echo "Running update..."
   sudo $UPDATE
 }
-export upgrade() {
+upgrade() {
   echo "Running upgrade..."
   sudo $UPGRADE
 }
-export autoremove() {
+autoremove() {
   echo "Running autoremove..."
   sudo $AUTOREMOVE
 }
-export install () {
+install () {
   for var in "$@"; do
     if ! packageexists "$var"; then
       echo "Installing $var..."
@@ -37,7 +39,7 @@ export install () {
     fi
   done
 }
-export url_install() {
+url_install() {
   if ! packageexists "$1"; then
     wget -q "$2"
     FILENAME=$(basename "$var")
@@ -50,18 +52,18 @@ export url_install() {
 
 # Debian-specific helper functions
 
-export addrepository() {
+addrepository() {
   echo "Adding repository $1..."
   sudo $ADDREPOSITORY "$1"
 }
-export repositoryexists() {
+repositoryexists() {
   if [[ -z $(find /etc/apt/ -name *.list | xargs cat | grep "$(echo "$1" | sed 's/\[/\\[/g' | sed 's/\]/\\]/g')") ]]; then
     return 0 # false
   else
     return 1 # true
   fi
 }
-export packageexists() {
+packageexists() {
   OUTPUT="$(dpkg -s "$1" 2>&1 > /dev/null)"
   if [[ -z "$OUTPUT" ]]; then
     echo "$1 is already installed"
@@ -74,7 +76,7 @@ export packageexists() {
 
 
 # Ubuntu-specific helper functions
-export snap_install() {
+snap_install() {
   for var in "$@"; do
     echo "Installing $var..."
     $SNAP_INSTALL $var

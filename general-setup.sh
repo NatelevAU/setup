@@ -3,12 +3,10 @@
 
 
 
-# URL Constants
+# Path Constants
 
-export LINUX_SETUP_PATH="https://raw.githubusercontent.com/NatelevAU/setup/main/linux/linux-setup.sh"
-
-export UBUNTU_SETUP_PATH="https://raw.githubusercontent.com/NatelevAU/setup/main/linux/ubuntu/ubuntu-setup.sh"
-export UBUNTU_HELPER_PATH="https://raw.githubusercontent.com/NatelevAU/setup/main/linux/ubuntu/ubuntu-helper.sh"
+CURR_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+LINUX_SETUP_PATH="$CURR_DIR/linux/linux-setup.sh"
 
 
 
@@ -26,7 +24,7 @@ general_setup() {
 	
 	echo "OSTYPE is $OSTYPE"
 	case "$OSTYPE" in
-		linux-gnu*) run_file "$LINUX_SETUP_PATH" ;; # Linux
+		linux-gnu*) source "$LINUX_SETUP_PATH" ;; # Linux
 		cygwin*) ;; # POSIX compatibility layer and Linux environment emulation for Windows
 		msys*) ;; # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
 		win32*) ;; # Windows

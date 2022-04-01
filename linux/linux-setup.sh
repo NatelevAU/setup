@@ -1,8 +1,13 @@
 #!/bin/bash
-
-
-
 # General setup function for linux
+
+
+# Path Constants
+
+CURR_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+UBUNTU_SETUP_PATH="$CURR_DIR/ubuntu/ubuntu-setup.sh"
+
+
 
 linux_setup() {
 	echo "Starting setup..."
@@ -18,10 +23,9 @@ linux_setup() {
 	export LINUX_VERSION_ID=$(cat /etc/*-release | grep "^VERSION_ID=" | sed 's/VERSION_ID=//')
 	
 	echo "Running on $LINUX_ID $LINUX_VERSION_ID (like $LINUX_ID_LIKE)"
-	run_file "$LINUX_SETUP_PATH"
 	
 	case "$LINUX_ID" in
-		ubuntu*) run_file "$UBUNTU_SETUP_PATH" ;;
+		ubuntu*) source "$UBUNTU_SETUP_PATH" ;;
 		# debian*) ;;
 		# arch*) ;;
 		*) echo "Unknown distro $ID like $ID_LIKE" ;; # DEFAULT

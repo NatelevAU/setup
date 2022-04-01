@@ -1,10 +1,18 @@
 #!/bin/bash
+
+
+
+# Path Constants
+
+CURR_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+UBUNTU_HELPER_PATH="$CURR_DIR/ubuntu-helper.sh"
+
 source "$UBUNTU_HELPER_PATH"
 
 
 # Check sudo is installed
-$UPDATE
-$INSTALL sudo
+update
+install sudo
 
 # Add user to sudo list if not running with root permissions
 if [[ "$EUID" -ne 0 ]]; then
