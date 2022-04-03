@@ -104,7 +104,7 @@ snap_install intellij-idea-community
 install nano
 
 # Install utility packages
-install dolphin # file manager
+install nemo nemo-fileroller # file manager
 install gparted
 install keychain
 install libreoffice
@@ -137,7 +137,10 @@ sudo systemctl start docker
 
 # Setup PostgreSQL
 # TODO Find better alternative
-pg_ctlcluster 14 main start
+sudo pg_ctlcluster 14 main start
+
+# Upgrade npm
+sudo npm install -g npm
 
 # Setup Yarn
 sudo npm i -g yarn
