@@ -6,6 +6,7 @@
 
 CURR_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 UBUNTU_SETUP_PATH="$CURR_DIR/ubuntu/ubuntu-setup.sh"
+LINUX_ENVIRONMENT_PATH="$CURR_DIR/linux-environment.sh"
 
 
 
@@ -30,6 +31,11 @@ linux_setup() {
 		# arch*) ;;
 		*) echo "Unknown distro $ID like $ID_LIKE" ;; # DEFAULT
 	esac
+	
+	# Setup environment
+	source "$LINUX_ENVIRONMENT_PATH"
+
+	echo "Setup finished!"
 }
 
 

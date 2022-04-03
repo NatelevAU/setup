@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26" height="22">
+    <g id="active-center" style="opacity:1">
+      <path d="M0 0h26v22H0z" fill="#e5e5e5" style="opacity:0" />
+      <path style="" d="M8 6v10h10V6zm1 1h8v8H9z"  font-weight="400" font-family="sans-serif" overflow="visible" fill="#202020"/>
+    </g>
+    <g id="hover-center" style="opacity:1">
+      <path d="M0 0h26v22H0z" fill="#e5e5e5" style="opacity:0.5"/>
+      <path style="" d="M8 6v10h10V6zm1 1h8v8H9z"  font-weight="400" font-family="sans-serif" overflow="visible" fill="#202020"/>
+    </g>
+    <g id="pressed-center" style="opacity:1">
+      <path d="M0 0h26v22H0z" fill="#e5e5e5" style="opacity:0.5"/>
+      <path style="" d="M8 6v10h10V6zm1 1h8v8H9z"  font-weight="400" font-family="sans-serif" overflow="visible" fill="#202020"/>
+    </g>
+    <g id="inactive-center" style="opacity:1">
+      <path d="M0 0h26v22H0z" fill="#e5e5e5" style="opacity:0"/>
+      <path style="" d="M8 6v10h10V6zm1 1h8v8H9z"  font-weight="400" font-family="sans-serif" overflow="visible" fill="#808080"/>
+    </g>
+    <g id="deactivated-center" style="opacity:1">
+      <path d="M0 0h26v22H0z" fill="#e5e5e5" style="opacity:0"/>
+      <path style="" d="M8 6v10h10V6zm1 1h8v8H9z"  font-weight="400" font-family="sans-serif" overflow="visible" fill="#808080"/>
+    </g>
+</svg>

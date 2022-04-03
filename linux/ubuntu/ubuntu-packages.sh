@@ -104,10 +104,10 @@ snap_install intellij-idea-community
 install nano
 
 # Install utility packages
-install nemo nemo-fileroller # file manager
 install gparted
 install keychain
 install libreoffice
+install nemo nemo-fileroller # file manager
 install net-tools
 install pinta
 install tar
@@ -119,6 +119,7 @@ install zip
 install bash-doc
 install ffmpeg
 install qbittorrent
+install tasksel # required for KDE
 
 # Install games
 url_install "mmrdesktop" "https://github.com/mmrteam/mmr-desktop/releases/download/v1.3.0/mmrdesktop_1.3.0_amd64.deb"
@@ -144,6 +145,10 @@ sudo npm install -g npm
 
 # Setup Yarn
 sudo npm i -g yarn
+
+# Install Kubuntu Desktop
+sudo DEBIAN_FRONTEND=noninteractive tasksel install kubuntu-desktop
+# TODO Set Plasma as default desktop
 
 # Upgrade all other packages
 upgrade

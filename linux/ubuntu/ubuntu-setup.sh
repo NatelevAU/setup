@@ -6,7 +6,6 @@
 
 CURR_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 UBUNTU_HELPER_PATH="$CURR_DIR/ubuntu-helper.sh"
-UBUNTU_ENVIRONMENT_PATH="$CURR_DIR/ubuntu-environment.sh"
 UBUNTU_PACKAGES_PATH="$CURR_DIR/ubuntu-packages.sh"
 
 source "$UBUNTU_HELPER_PATH"
@@ -36,12 +35,6 @@ read -p 'You should setup your dotfiles. Press any key to continue...'
 
 
 
-# Setup environment
-source "$UBUNTU_ENVIRONMENT_PATH"
-
 # Setup packages
 source "$UBUNTU_PACKAGES_PATH"
 
-
-
-echo "Setup finished!"

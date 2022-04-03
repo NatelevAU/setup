@@ -1,0 +1,38 @@
+sed -i -e 's/#1952FE/#303F9F/g' *.svg 
+sed -i -e 's/#198CFE/#1976D2/g' *.svg 
+sed -i -e 's/#19C5FF/#0288D1/g' *.svg 
+sed -i -e 's/#19FE52/#4CAF50/g' *.svg 
+sed -i -e 's/#19FE8C/#689F38/g' *.svg 
+sed -i -e 's/#19FEC5/#388E3C/g' *.svg 
+sed -i -e 's/#19FEFE/#0288D1/g' *.svg 
+sed -i -e 's/#807F7F/#00796B/g' *.svg 
+sed -i -e 's/#8CFF19/#388E3C/g' *.svg 
+sed -i -e 's/#C5FE19/#689F38/g' *.svg 
+sed -i -e 's/#FE1919/#d32f2f/g' *.svg 
+sed -i -e 's/#FE1952/#C2185B/g' *.svg 
+sed -i -e 's/#FE198C/#FFA000/g' *.svg 
+sed -i -e 's/#FE8C19/#F57C00/g' *.svg 
+sed -i -e 's/#FF19C5/#E64A19/g' *.svg 
+sed -i -e 's/#FFC519/#4CAF50/g' *.svg 
+
+
+sed -i -e 's/#606060/#0097A7/g' *.svg 
+ sed -i -e 's/#36d7b7/#bbbbbb/g' *.svg 
+
+#d32f2f
+#C2185B
+#7B1FA2
+#512DA8
+#303F9F
+#1976D2
+#0288D1
+#0097A7
+#00796B
+#388E3C
+#689F38
+#AFB42B
+#FBC02D
+#FFA000
+#F57C00
+#E64A19
+#4CAF50
