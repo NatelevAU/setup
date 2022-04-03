@@ -5,6 +5,10 @@
 # URL Constants
 ICONS_TARGET="$HOME/.local/share/icons/"
 ICONS_SOURCE="https://raw.githubusercontent.com/adhec/plasmaX/master/PlasmaXDark/icons"
+COLORS_TARGET="$HOME/.local/share/color-schemes"
+COLORS_SOURCE="https://raw.githubusercontent.com/adhec/plasmaX/master/PlasmaXDark/colors"
+PLASMA_TARGET="$HOME/.local/share/plasma/desktoptheme/"
+PLASMA_SOURCE=""
 
 download_file() {
 	sudo wget -q "$1" -P "$2"
@@ -22,4 +26,6 @@ download_file "$ICONS_SOURCE/notification.svg" "$ICONS_TARGET"
 download_file "$ICONS_SOURCE/preferences.svg" "$ICONS_TARGET"
 download_file "$ICONS_SOURCE/start.svg" "$ICONS_TARGET"
 download_file "$ICONS_SOURCE/system.svg" "$ICONS_TARGET"
+
+download_file "$COLORS_SOURCE" "$COLORS_TARGET"
 
