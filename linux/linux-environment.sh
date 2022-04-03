@@ -15,5 +15,5 @@ copy_files () {
 }
 
 # Install PlasmaX
-# copy_files "$PLASMAX_SOURCE" "$PLASMAX_TARGET"
+copy_files "$PLASMAX_SOURCE" "$PLASMAX_TARGET"
 

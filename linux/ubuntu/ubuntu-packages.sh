@@ -119,7 +119,9 @@ install zip
 install bash-doc
 install ffmpeg
 install qbittorrent
-install tasksel # required for KDE
+
+# Install environment packages
+install kde-plasma-desktop
 
 # Install games
 url_install "mmrdesktop" "https://github.com/mmrteam/mmr-desktop/releases/download/v1.3.0/mmrdesktop_1.3.0_amd64.deb"
@@ -145,10 +147,6 @@ sudo npm install -g npm
 
 # Setup Yarn
 sudo npm i -g yarn
-
-# Install Kubuntu Desktop
-sudo DEBIAN_FRONTEND=noninteractive tasksel install kubuntu-desktop
-# TODO Set Plasma as default desktop
 
 # Upgrade all other packages
 upgrade
