@@ -104,6 +104,7 @@ snap_install intellij-idea-community
 install nano
 
 # Install utility packages
+install dolphin # file manager
 install gparted
 install keychain
 install libreoffice
