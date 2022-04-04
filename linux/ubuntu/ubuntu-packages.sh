@@ -120,10 +120,8 @@ install bash-doc
 install ffmpeg
 install qbittorrent
 
-# Install environment packages
-install kde-plasma-desktop
-
 # Install games
+url_install "minecraft-launcher" "https://launcher.mojang.com/download/Minecraft.deb"
 url_install "mmrdesktop" "https://github.com/mmrteam/mmr-desktop/releases/download/v1.3.0/mmrdesktop_1.3.0_amd64.deb"
 
 

@@ -42,8 +42,8 @@ install () {
 url_install() {
   if ! packageexists "$1"; then
     wget -q "$2"
-    FILENAME=$(basename "$var")
-    $INSTALL_FILE $FILENAME
+    FILENAME=$(basename "$2")
+    sudo $INSTALL_FILE $FILENAME
     rm -rf "$FILENAME"
   fi
 }
