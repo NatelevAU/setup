@@ -78,7 +78,7 @@ install tigervnc-viewer
 
 # Install dev packages
 install build-essential
-install default-jre openjdk-8-jre-headless openjdk-11-jdk openjdk-18-jdk
+install default-jre openjdk-8-jre-headless openjdk-11-jdk openjdk-18-jdk openjdk-17-jre
 install libffi-dev
 install nodejs
 install perl
