@@ -94,6 +94,7 @@ install signal-desktop
 snap_install slack
 snap_install skype
 # install teams
+snap_install telegram-desktop
 # install zoom
 
 # Install IDE/editor packages
