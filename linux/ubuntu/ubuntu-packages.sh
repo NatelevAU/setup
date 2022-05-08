@@ -119,6 +119,7 @@ install zip
 # Install misc packages
 install bash-doc
 install ffmpeg
+snap_install gimp
 install qbittorrent
 
 # Install games
