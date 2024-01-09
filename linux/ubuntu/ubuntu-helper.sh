@@ -41,9 +41,10 @@ install () {
 }
 url_install() {
   if ! packageexists "$1"; then
-    wget -q "$2"
-    FILENAME=$(basename "$2")
-    sudo $INSTALL_FILE $FILENAME
+    echo "Installing $1..."
+    FILENAME="app"
+    wget -q "$2" -O "$FILENAME"
+    sudo $INSTALL_FILE "$FILENAME"
     rm -rf "$FILENAME"
   fi
 }

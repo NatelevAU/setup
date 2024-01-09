@@ -34,10 +34,6 @@ if repositoryexists "$CHROME_REPO"; then
   sudo chmod +x /usr/local/bin/docker-compose
 fi
 
-# Node
-# sudo curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-# TODO Find better way to install node
-
 # PostgreSQL
 POSTGRESQL_REPO="deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main"
 if repositoryexists "$POSTGRESQL_REPO"; then
@@ -52,10 +48,65 @@ if repositoryexists "$SIGNAL_REPO"; then
   echo "$SIGNAL_REPO" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
 fi
 
+# Teams
+TEAMS_REPO="deb [signed-by=/etc/apt/keyrings/teams-for-linux.asc arch=amd64] https://repo.teamsforlinux.de/debian/ stable main"
+if repositoryexists "$TEAMS_REPO"; then
+  sudo mkdir -p /etc/apt/keyrings
+  sudo wget -qO /etc/apt/keyrings/teams-for-linux.asc https://repo.teamsforlinux.de/teams-for-linux.asc
+  echo "deb [signed-by=/etc/apt/keyrings/teams-for-linux.asc arch=$(dpkg --print-architecture)] https://repo.teamsforlinux.de/debian/ stable main" \
+  | sudo tee /etc/apt/sources.list.d/teams-for-linux-packages.list
+fi
+
+
+
+# Custom install functions
+
+# Slack
+install_slack() {
+  if ! packageexists "slack-desktop"; then
+    echo "Installing slack-desktop..."
+    wget -q https://slack.com/downloads/instructions/ubuntu -O - \
+    | tr "\t\r\n'" '   "' \
+    | grep -i -o '<a[^>]\+href[ ]*=[ \t]*"\(ht\|f\)tps\?:[^"]\+"' \
+    | sed -e 's/^.*"\([^"]\+\)".*$/\1/g' \
+    | grep 'slack-desktop' \
+    | xargs wget -q -O slack-desktop.deb
+    sudo $INSTALL_FILE slack-desktop.deb
+    rm -rf slack-desktop.deb
+  fi
+}
+
+# NVM
+install_nvm() {
+  if [[ ! -d "${HOME}/.nvm/.git" ]]; then
+    curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+  fi
+}
+
+# Postman
+install_postman() {
+  if [[ ! -d "/opt/Postman" ]]; then
+    BIT=$(getconf LONG_BIT)
+    wget -O postman.tar.gz "https://dl.pstmn.io/download/latest/linux${BIT}"
+    sudo tar xvf postman.tar.gz -C /opt/
+    rm postman.tar.gz
+
+    # Make the app accessible from a launcher icon 
+    echo "[Desktop Entry]
+    Encoding=UTF-8
+    Name=Postman
+    Exec=/opt/Postman/app/Postman %U
+    Icon=/opt/Postman/app/resources/app/assets/icon.png
+    Terminal=false
+    Type=Application
+    Categories=Development;" >> ~/.local/share/applications/Postman.desktop
+  fi
+}
+
 
 
 # Install packages required to install some other packages
-install gdebi-core snapd
+install gdebi-core
 
 
 
@@ -66,66 +117,58 @@ install rclone
 install apt-transport-https
 install aws-shell
 install docker-ce docker-ce-cli
-install gdb
 install git-all
-install gradle
-install maven
-install netcat
-install net-tools
-install putty
-install ssh
-install tigervnc-viewer
+install mysql-server
+install postgresql postgresql-contrib
+install_postman
 
 # Install dev packages
 install build-essential
-install default-jre openjdk-8-jre-headless openjdk-11-jdk openjdk-18-jdk openjdk-17-jre
+install default-jre openjdk-8-jre-headless openjdk-11-jdk
 install libffi-dev
 install nodejs
+install_nvm
 install perl
-install php php-cli
-install postgresql postgresql-contrib
 install python2.7-dev
 install python3-dev python3-pip
-install ruby
 
 # Install communication packages
-snap_install discord
+url_install discord "https://discord.com/api/download?platform=linux&format=deb"
 install signal-desktop
-snap_install slack
-snap_install skype
-# install teams
-snap_install telegram-desktop
+install_slack
+install teams-for-linux
+install telegram-desktop
 # install zoom
 
 # Install IDE/editor packages
 install code
 install emacs
 install gedit
-snap_install intellij-idea-community
 install nano
 
 # Install utility packages
-install gparted
+install gparted # graphical disk partition editor
 install keychain
 install libreoffice
 install nemo nemo-fileroller # file manager
+install netcat
 install net-tools
-install pinta
+install pinta # like MS paint
+install putty
+install ssh
 install tar
+install tigervnc-viewer
 install thunderbird
 install vlc
 install zip
 
 # Install misc packages
-install bash-doc
-install ffmpeg
-snap_install gimp
+install ffmpeg # process video/audo files
+install gimp
 install qbittorrent
 
 # Install games
 url_install "minecraft-launcher" "https://launcher.mojang.com/download/Minecraft.deb"
-url_install "mmrdesktop" "https://github.com/mmrteam/mmr-desktop/releases/download/v1.3.0/mmrdesktop_1.3.0_amd64.deb"
-
 
 
 
@@ -138,15 +181,15 @@ sudo usermod -aG docker $USER
 sudo systemctl enable docker
 sudo systemctl start docker
 
+# Start MySQL
+sudo systemctl start mysql.service
+
 # Setup PostgreSQL
 # TODO Find better alternative
-sudo pg_ctlcluster 14 main start
+# sudo pg_ctlcluster 14 main start
 
-# Upgrade npm
-sudo npm install -g npm
-
-# Setup Yarn
-sudo npm i -g yarn
+# Refresh environment settings
+source ~/.bashrc
 
 # Upgrade all other packages
 upgrade
