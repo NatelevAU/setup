@@ -5,7 +5,7 @@
 
 # Setup
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/NatelevAU/setup/Test)](https://github.com/NatelevAU/setup/actions)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/NatelevAU/setup/main.yml?branch=main)](https://github.com/NatelevAU/setup/actions)
 [![GitHub License](https://img.shields.io/github/license/NatelevAU/setup)](https://choosealicense.com/licenses/mit/)
 
 ## Usage
