@@ -11,10 +11,9 @@
 ## Usage
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/NatelevAU/setup/main/general-setup.sh | sudo bash
+sudo bash ./general-setup.sh
 ```
 
 ## Author
 
 [Nathan Levy](https://nathanlevy.com/)
-
