@@ -48,6 +48,13 @@ if repositoryexists "$SIGNAL_REPO"; then
   echo "$SIGNAL_REPO" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
 fi
 
+# Spotify
+SPOTIFY_REPO="deb http://repository.spotify.com stable non-free"
+if repositoryexists "$SPOTIFY_REPO"; then
+  curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+  echo "$SPOTIFY_REPO" | sudo tee /etc/apt/sources.list.d/spotify.list
+fi
+
 # Teams
 TEAMS_REPO="deb [signed-by=/etc/apt/keyrings/teams-for-linux.asc arch=amd64] https://repo.teamsforlinux.de/debian/ stable main"
 if repositoryexists "$TEAMS_REPO"; then
@@ -166,6 +173,7 @@ install zip
 install ffmpeg # process video/audo files
 install gimp
 install qbittorrent
+install spotify-client
 
 # Install games
 url_install "minecraft-launcher" "https://launcher.mojang.com/download/Minecraft.deb"
