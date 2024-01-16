@@ -26,8 +26,8 @@ linux_setup() {
 	echo "Running on $LINUX_ID $LINUX_VERSION_ID (like $LINUX_ID_LIKE)"
 	
 	case "$LINUX_ID" in
+		ubuntu*) source "$DEBIAN_SETUP_PATH" ;;
 		debian*) source "$DEBIAN_SETUP_PATH" ;;
-		# debian*) ;;
 		# arch*) ;;
 		*) echo "Unknown distro $ID like $ID_LIKE" ;; # DEFAULT
 	esac

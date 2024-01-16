@@ -115,8 +115,6 @@ install_postman() {
 # Install packages required to install some other packages
 install gdebi-core
 
-
-
 # Install setup packages
 install rclone
 
