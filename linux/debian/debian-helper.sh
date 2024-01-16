@@ -47,6 +47,12 @@ url_install() {
     rm -rf "$FILENAME"
   fi
 }
+brew_install() {
+  if ! packageexists "$1"; then
+    echo "Installing $1..."
+    brew install "$1"
+  fi
+}
 
 
 

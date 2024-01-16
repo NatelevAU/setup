@@ -68,6 +68,13 @@ fi
 
 # Custom install functions
 
+# Homebrew
+# install_homebrew() {
+#   if [[ ! $(command -v brew) ]]; then
+#     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#   fi
+# }
+
 # Slack
 install_slack() {
   if ! packageexists "slack-desktop"; then
@@ -114,6 +121,7 @@ install_postman() {
 
 # Install packages required to install some other packages
 install gdebi-core
+install linux-headers-generic
 
 # Install setup packages
 install rclone
@@ -129,6 +137,7 @@ install_postman
 
 # Install dev packages
 install build-essential
+install clojure
 install default-jre openjdk-8-jre-headless openjdk-11-jdk
 install libffi-dev
 install nodejs
