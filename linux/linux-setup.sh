@@ -5,7 +5,7 @@
 # Path Constants
 
 CURR_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-DEBIAN_SETUP_PATH="$CURR_DIR/debian/debian-setup.sh"
+DEBIAN_SETUP_PATH="$CURR_DIR/debian-setup.sh"
 LINUX_ENVIRONMENT_PATH="$CURR_DIR/linux-environment.sh"
 
 
