@@ -167,6 +167,7 @@ install libreoffice
 install nemo nemo-fileroller # file manager
 install netcat
 install net-tools
+install nordvpn
 install pinta # like MS paint
 install putty
 install ssh
