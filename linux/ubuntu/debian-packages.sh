@@ -19,9 +19,9 @@ if repositoryexists "$CODE_REPO"; then
 fi
 
 # Docker
-DOCKER_REPO="deb [arch=amd64] https://download.docker.com/linux/ubuntu disco stable"
+DOCKER_REPO="deb [arch=amd64] https://download.docker.com/linux/debian disco stable"
 if repositoryexists "$DOCKER_REPO"; then
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - 
+  curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - 
   echo "$DOCKER_REPO" | sudo tee /etc/apt/sources.list.d/docker.list
   sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 fi
@@ -72,7 +72,7 @@ fi
 install_slack() {
   if ! packageexists "slack-desktop"; then
     echo "Installing slack-desktop..."
-    wget -q https://slack.com/downloads/instructions/ubuntu -O - \
+    wget -q https://slack.com/downloads/instructions/debian -O - \
     | tr "\t\r\n'" '   "' \
     | grep -i -o '<a[^>]\+href[ ]*=[ \t]*"\(ht\|f\)tps\?:[^"]\+"' \
     | sed -e 's/^.*"\([^"]\+\)".*$/\1/g' \

@@ -5,7 +5,7 @@
 # Path Constants
 
 CURR_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-UBUNTU_SETUP_PATH="$CURR_DIR/ubuntu/ubuntu-setup.sh"
+DEBIAN_SETUP_PATH="$CURR_DIR/debian/debian-setup.sh"
 LINUX_ENVIRONMENT_PATH="$CURR_DIR/linux-environment.sh"
 
 
@@ -26,7 +26,7 @@ linux_setup() {
 	echo "Running on $LINUX_ID $LINUX_VERSION_ID (like $LINUX_ID_LIKE)"
 	
 	case "$LINUX_ID" in
-		ubuntu*) source "$UBUNTU_SETUP_PATH" ;;
+		debian*) source "$DEBIAN_SETUP_PATH" ;;
 		# debian*) ;;
 		# arch*) ;;
 		*) echo "Unknown distro $ID like $ID_LIKE" ;; # DEFAULT

@@ -2,7 +2,7 @@
 
 
 
-# Ubuntu constants
+# Debian constants
 
 export DEBIAN_FRONTEND="noninteractive"
 
@@ -13,7 +13,6 @@ export AUTOREMOVE="apt-get -y autoremove"
 export ADDREPOSITORY="add-apt-repository"
 export INSTALL="apt-get -y -o Dpkg::Options::=--force-confold install"
 export INSTALL_FILE="dpkg -i"
-export SNAP_INSTALL="sudo snap install --classic"
 
 
 
@@ -73,14 +72,3 @@ packageexists() {
     return 1 # false
   fi
 }
-
-
-
-# Ubuntu-specific helper functions
-snap_install() {
-  for var in "$@"; do
-    echo "Installing $var..."
-    $SNAP_INSTALL $var
-  done
-}
-

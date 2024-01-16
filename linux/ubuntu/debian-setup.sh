@@ -5,10 +5,10 @@
 # Path Constants
 
 CURR_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-UBUNTU_HELPER_PATH="$CURR_DIR/ubuntu-helper.sh"
-UBUNTU_PACKAGES_PATH="$CURR_DIR/ubuntu-packages.sh"
+DEBIAN_HELPER_PATH="$CURR_DIR/debian-helper.sh"
+DEBIAN_PACKAGES_PATH="$CURR_DIR/debian-packages.sh"
 
-source "$UBUNTU_HELPER_PATH"
+source "$DEBIAN_HELPER_PATH"
 
 
 
@@ -36,5 +36,5 @@ read -p 'You should setup your dotfiles. Press any key to continue...'
 
 
 # Setup packages
-source "$UBUNTU_PACKAGES_PATH"
+source "$DEBIAN_PACKAGES_PATH"
 
