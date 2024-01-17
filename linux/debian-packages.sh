@@ -131,6 +131,7 @@ install apt-transport-https
 install aws-shell
 install docker-ce docker-ce-cli
 install git-all
+install leiningen # for clojure
 install mysql-server
 install postgresql postgresql-contrib
 install_postman
