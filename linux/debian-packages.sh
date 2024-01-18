@@ -162,6 +162,8 @@ install gedit
 install nano
 
 # Install utility packages
+install ffmpeg # process video/audo files
+install gimp
 install gparted # graphical disk partition editor
 install keychain
 install libreoffice
@@ -171,6 +173,8 @@ install net-tools
 install nordvpn
 install pinta # like MS paint
 install putty
+install qbittorrent
+install spotify-client
 install ssh
 install tar
 install tigervnc-viewer
@@ -179,12 +183,6 @@ install thunderbird
 install virtualbox virtualbox-ext-pack
 install vlc
 install zip
-
-# Install misc packages
-install ffmpeg # process video/audo files
-install gimp
-install qbittorrent
-install spotify-client
 
 # Install games
 url_install "minecraft-launcher" "https://launcher.mojang.com/download/Minecraft.deb"
