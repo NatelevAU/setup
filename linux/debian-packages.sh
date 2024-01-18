@@ -174,6 +174,7 @@ install putty
 install ssh
 install tar
 install tigervnc-viewer
+install timeshift
 install thunderbird
 install virtualbox virtualbox-ext-pack
 install vlc
