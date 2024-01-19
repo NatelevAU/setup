@@ -130,7 +130,7 @@ install signal-desktop
 scan_url_install slack-desktop "https://slack.com/downloads/instructions/ubuntu"
 install teams-for-linux
 install telegram-desktop
-# install zoom
+url_install zoom "https://zoom.us/client/latest/zoom_$(dpkg --print-architecture).deb"
 
 # Install IDE/editor packages
 install code
