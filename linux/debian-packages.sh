@@ -44,7 +44,6 @@ fi
 # Signal
 SIGNAL_REPO="deb [arch=$(dpkg --print-architecture)] https://updates.signal.org/desktop/apt $(. /etc/os-release && echo "$VERSION_CODENAME") main"
 if repositoryexists "$SIGNAL_REPO"; then
-  wget -qO- https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
   echo "$SIGNAL_REPO" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
 fi
 
@@ -79,7 +78,7 @@ fi
 install_slack() {
   if ! packageexists "slack-desktop"; then
     echo "Installing slack-desktop..."
-    wget -q https://slack.com/downloads/instructions/debian -O - \
+    wget -q https://slack.com/downloads/instructions/ubuntu -O - \
     | tr "\t\r\n'" '   "' \
     | grep -i -o '<a[^>]\+href[ ]*=[ \t]*"\(ht\|f\)tps\?:[^"]\+"' \
     | sed -e 's/^.*"\([^"]\+\)".*$/\1/g' \
@@ -87,6 +86,28 @@ install_slack() {
     | xargs wget -q -O slack-desktop.deb
     sudo $INSTALL_FILE slack-desktop.deb
     rm -rf slack-desktop.deb
+  fi
+}
+
+# Virtualbox
+install_virtualbox() {
+  if [[ ! -d "${HOME}/.config/VirtualBox" && ! -d "${HOME}/VirtualBox" ]]; then
+    echo "Installing virtualbox..."
+    wget -q https://www.virtualbox.org/wiki/Linux_Downloads -O - \
+    | tr "\t\r\n'" '   "' \
+    | grep -i -o '<a[^>]\+href[ ]*=[ \t]*"\(ht\|f\)tps\?:[^"]\+"' \
+    | sed -e 's/^.*"\([^"]\+\)".*$/\1/g' \
+    | grep "Debian~$(. /etc/os-release && echo "$VERSION_CODENAME")" \
+    | xargs wget -q -O virtualbox.deb
+    sudo $INSTALL_FILE virtualbox.deb
+    rm -rf virtualbox.deb
+  fi
+}
+
+# NordVPN
+install_nordvpn() {
+  if ! packageexists "nordvpn"; then
+    sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
   fi
 }
 
@@ -132,14 +153,14 @@ install aws-shell
 install docker-ce docker-ce-cli
 install git-all
 install leiningen # for clojure
-install mysql-server
+install mariadb-server
 install postgresql postgresql-contrib
 install_postman
 
 # Install dev packages
 install build-essential
 install clojure
-install default-jre openjdk-8-jre-headless openjdk-11-jdk
+install default-jre openjdk-11-jdk
 install libffi-dev
 install nodejs
 install_nvm
@@ -168,10 +189,9 @@ install gparted # graphical disk partition editor
 install keychain
 install libreoffice
 install nemo nemo-fileroller # file manager
-install netcat
+install netcat-traditional
 install net-tools
-install nordvpn
-install pinta # like MS paint
+install_nordvpn
 install putty
 install qbittorrent
 install spotify-client
@@ -180,7 +200,7 @@ install tar
 install tigervnc-viewer
 install timeshift
 install thunderbird
-install virtualbox virtualbox-ext-pack
+install_virtualbox
 install vlc
 install zip
 
@@ -197,9 +217,6 @@ sudo usermod -aG docker $USER
 # TODO Add alternative if "System has not been booted with systemd as init system (PID 1). Can't operate."
 sudo systemctl enable docker
 sudo systemctl start docker
-
-# Start MySQL
-sudo systemctl start mysql.service
 
 # Setup PostgreSQL
 # TODO Find better alternative
