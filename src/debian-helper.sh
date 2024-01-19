@@ -12,7 +12,6 @@ export AUTOREMOVE="apt-get -y autoremove"
 
 export ADDREPOSITORY="add-apt-repository"
 export INSTALL="apt-get -y -o Dpkg::Options::=--force-confold install"
-export INSTALL_FILE="dpkg -i"
 
 
 
@@ -45,9 +44,9 @@ install () {
 url_install() {
   if ! packageexists "$1"; then
     echo "Installing $1..."
-    FILENAME="app"
+    FILENAME="$1.deb"
     wget -q "$2" -O "$FILENAME"
-    sudo $INSTALL_FILE "$FILENAME"
+    sudo $INSTALL "./$FILENAME"
     rm -rf "$FILENAME"
   fi
 }
