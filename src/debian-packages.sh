@@ -2,6 +2,11 @@
 
 
 
+# Custom Variables
+ARCHITECTURE=$(dpkg --print-architecture)
+
+
+
 # Install packages required to add custom repositories
 install apt-utils ca-certificates curl gpg libssl-dev software-properties-common wget
 
@@ -10,7 +15,7 @@ install apt-utils ca-certificates curl gpg libssl-dev software-properties-common
 # Add custom repositories
 
 # Code
-CODE_REPO="deb [arch=$(dpkg --print-architecture)] https://packages.microsoft.com/repos/code stable main"
+CODE_REPO="deb [arch=$ARCHITECTURE] https://packages.microsoft.com/repos/code stable main"
 if repositoryexists "$CODE_REPO"; then
   wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
   sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
@@ -19,7 +24,7 @@ if repositoryexists "$CODE_REPO"; then
 fi
 
 # Docker
-DOCKER_REPO="deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/debian $(. /etc/os-release && echo "$VERSION_CODENAME") stable"
+DOCKER_REPO="deb [arch=$ARCHITECTURE] https://download.docker.com/linux/debian $(. /etc/os-release && echo "$VERSION_CODENAME") stable"
 if repositoryexists "$DOCKER_REPO"; then
   curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - 
   echo "$DOCKER_REPO" | sudo tee /etc/apt/sources.list.d/docker.list
@@ -27,7 +32,7 @@ if repositoryexists "$DOCKER_REPO"; then
 fi
 
 # Google Chrome
-CHROME_REPO="deb [arch=$(dpkg --print-architecture)] http://dl.google.com/linux/chrome/deb/ stable main"
+CHROME_REPO="deb [arch=$ARCHITECTURE] http://dl.google.com/linux/chrome/deb/ stable main"
 if repositoryexists "$CHROME_REPO"; then
   echo "$CHROME_REPO" | sudo tee /etc/apt/sources.list.d/google-chrome.list
   wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -35,14 +40,14 @@ if repositoryexists "$CHROME_REPO"; then
 fi
 
 # PostgreSQL
-POSTGRESQL_REPO="deb [arch=$(dpkg --print-architecture)] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main"
+POSTGRESQL_REPO="deb [arch=$ARCHITECTURE] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main"
 if repositoryexists "$POSTGRESQL_REPO"; then
   sudo sh -c "echo $POSTGRESQL_REPO > /etc/apt/sources.list.d/pgdg.list"
   wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 fi
 
 # Signal
-SIGNAL_REPO="deb [arch=$(dpkg --print-architecture)] https://updates.signal.org/desktop/apt $(. /etc/os-release && echo "$VERSION_CODENAME") main"
+SIGNAL_REPO="deb [arch=$ARCHITECTURE] https://updates.signal.org/desktop/apt $(. /etc/os-release && echo "$VERSION_CODENAME") main"
 if repositoryexists "$SIGNAL_REPO"; then
   echo "$SIGNAL_REPO" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
 fi
@@ -59,7 +64,7 @@ TEAMS_REPO="deb [signed-by=/etc/apt/keyrings/teams-for-linux.asc arch=amd64] htt
 if repositoryexists "$TEAMS_REPO"; then
   sudo mkdir -p /etc/apt/keyrings
   sudo wget -qO /etc/apt/keyrings/teams-for-linux.asc https://repo.teamsforlinux.de/teams-for-linux.asc
-  echo "deb [signed-by=/etc/apt/keyrings/teams-for-linux.asc arch=$(dpkg --print-architecture)] https://repo.teamsforlinux.de/debian/ stable main" \
+  echo "deb [signed-by=/etc/apt/keyrings/teams-for-linux.asc arch=$ARCHITECTURE] https://repo.teamsforlinux.de/debian/ stable main" \
   | sudo tee /etc/apt/sources.list.d/teams-for-linux-packages.list
 fi
 
@@ -130,7 +135,7 @@ install signal-desktop
 scan_url_install slack-desktop "https://slack.com/downloads/instructions/ubuntu"
 install teams-for-linux
 install telegram-desktop
-url_install zoom "https://zoom.us/client/latest/zoom_$(dpkg --print-architecture).deb"
+url_install zoom "https://zoom.us/client/latest/zoom_$ARCHITECTURE.deb"
 
 # Install IDE/editor packages
 install code
