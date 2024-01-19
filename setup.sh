@@ -6,13 +6,12 @@
 # Path Constants
 
 CURR_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-LINUX_SETUP_PATH="$CURR_DIR/linux/linux-setup.sh"
+LINUX_SETUP_PATH="$CURR_DIR/src/linux-setup.sh"
 
 
 
-# General setup function to check which OS is running
-general_setup() {
-	
+# Setup function to check which OS is running
+setup() {
 	echo "OSTYPE is $OSTYPE"
 	case "$OSTYPE" in
 		linux-gnu*) source "$LINUX_SETUP_PATH" ;; # Linux
@@ -28,5 +27,5 @@ general_setup() {
 
 
 
-general_setup
+setup
 

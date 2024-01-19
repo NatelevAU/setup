@@ -11,7 +11,7 @@
 ## Usage
 
 ```bash
-sudo bash ./general-setup.sh
+bash ./setup.sh
 ```
 
 ## Author
