@@ -22,14 +22,17 @@ update() {
   echo "Running update..."
   sudo $UPDATE
 }
+
 upgrade() {
   echo "Running upgrade..."
   sudo $UPGRADE
 }
+
 autoremove() {
   echo "Running autoremove..."
   sudo $AUTOREMOVE
 }
+
 install () {
   for var in "$@"; do
     if ! packageexists "$var"; then
@@ -38,6 +41,7 @@ install () {
     fi
   done
 }
+
 url_install() {
   if ! packageexists "$1"; then
     echo "Installing $1..."
@@ -47,12 +51,25 @@ url_install() {
     rm -rf "$FILENAME"
   fi
 }
-brew_install() {
+
+scan_url_install() {
   if ! packageexists "$1"; then
-    echo "Installing $1..."
-    brew install "$1"
+    INSTALL_URL=$(wget -q "$2" -O - \
+    | tr "\t\r\n'" '   "' \
+    | grep -i -o '<a[^>]\+href[ ]*=[ \t]*"\(ht\|f\)tps\?:[^"]\+"' \
+    | sed -e 's/^.*"\([^"]\+\)".*$/\1/g' \
+    | grep "$1")
+    url_install "$1" "$INSTALL_URL"
   fi
 }
+
+script_install() {
+  if ! packageexists "$1"; then
+    echo "Installing $1..."
+    sh <(curl -sSf "$2")
+  fi
+}
+
 
 
 

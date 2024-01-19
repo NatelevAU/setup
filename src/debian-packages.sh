@@ -67,54 +67,10 @@ fi
 
 # Custom install functions
 
-# Homebrew
-# install_homebrew() {
-#   if [[ ! $(command -v brew) ]]; then
-#     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-#   fi
-# }
-
-# Slack
-install_slack() {
-  if ! packageexists "slack-desktop"; then
-    echo "Installing slack-desktop..."
-    wget -q https://slack.com/downloads/instructions/ubuntu -O - \
-    | tr "\t\r\n'" '   "' \
-    | grep -i -o '<a[^>]\+href[ ]*=[ \t]*"\(ht\|f\)tps\?:[^"]\+"' \
-    | sed -e 's/^.*"\([^"]\+\)".*$/\1/g' \
-    | grep 'slack-desktop' \
-    | xargs wget -q -O slack-desktop.deb
-    sudo $INSTALL_FILE slack-desktop.deb
-    rm -rf slack-desktop.deb
-  fi
-}
-
 # Virtualbox
 install_virtualbox() {
   if [[ ! -d "${HOME}/.config/VirtualBox" && ! -d "${HOME}/VirtualBox" ]]; then
-    echo "Installing virtualbox..."
-    wget -q https://www.virtualbox.org/wiki/Linux_Downloads -O - \
-    | tr "\t\r\n'" '   "' \
-    | grep -i -o '<a[^>]\+href[ ]*=[ \t]*"\(ht\|f\)tps\?:[^"]\+"' \
-    | sed -e 's/^.*"\([^"]\+\)".*$/\1/g' \
-    | grep "Debian~$(. /etc/os-release && echo "$VERSION_CODENAME")" \
-    | xargs wget -q -O virtualbox.deb
-    sudo $INSTALL_FILE virtualbox.deb
-    rm -rf virtualbox.deb
-  fi
-}
-
-# NordVPN
-install_nordvpn() {
-  if ! packageexists "nordvpn"; then
-    sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
-  fi
-}
-
-# NVM
-install_nvm() {
-  if [[ ! -d "${HOME}/.nvm/.git" ]]; then
-    curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+    scan_url_install virtualbox "https://www.virtualbox.org/wiki/Linux_Downloads"
   fi
 }
 
@@ -163,7 +119,7 @@ install clojure
 install default-jre openjdk-11-jdk
 install libffi-dev
 install nodejs
-install_nvm
+script_install nvm "https://raw.githubusercontent.com/creationix/nvm/master/install.sh"
 install perl
 install python2.7-dev
 install python3-dev python3-pip
@@ -171,7 +127,7 @@ install python3-dev python3-pip
 # Install communication packages
 url_install discord "https://discord.com/api/download?platform=linux&format=deb"
 install signal-desktop
-install_slack
+scan_url_install slack-desktop "https://slack.com/downloads/instructions/ubuntu"
 install teams-for-linux
 install telegram-desktop
 # install zoom
@@ -191,7 +147,7 @@ install libreoffice
 install nemo nemo-fileroller # file manager
 install netcat-traditional
 install net-tools
-install_nordvpn
+script_install nordvpn "https://downloads.nordcdn.com/apps/linux/install.sh"
 install putty
 install qbittorrent
 install spotify-client
