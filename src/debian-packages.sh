@@ -32,11 +32,13 @@ if repositoryexists "$DOCKER_REPO"; then
 fi
 
 # Google Chrome
-CHROME_REPO="deb [arch=$ARCHITECTURE] http://dl.google.com/linux/chrome/deb/ stable main"
+CHROME_REPO="deb [arch=$ARCHITECTURE] signed-by=/usr/share/keyrings/google-chrome.gpg http://dl.google.com/linux/chrome/deb/ stable main"
 if repositoryexists "$CHROME_REPO"; then
+  curl -fSsL https://dl.google.com/linux/linux_signing_key.pub | \
+  sudo gpg --dearmor | sudo tee /usr/share/keyrings/google-chrome.gpg >> /dev/null
+  
   echo "$CHROME_REPO" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-  wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-  sudo chmod +x /usr/local/bin/docker-compose
+  # wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 fi
 
 # PostgreSQL
@@ -144,6 +146,7 @@ install gedit
 install nano
 
 # Install utility packages
+install google-chrome-stable
 install ffmpeg # process video/audo files
 install gimp
 install gparted # graphical disk partition editor
