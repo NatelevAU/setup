@@ -106,7 +106,7 @@ install rclone
 
 # Install dev environment packages
 install apt-transport-https
-install aws-shell
+install awscli
 install docker-ce docker-ce-cli
 install git-all
 install leiningen # for clojure
