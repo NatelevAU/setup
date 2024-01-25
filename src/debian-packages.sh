@@ -24,11 +24,11 @@ if repositoryexists "$CODE_REPO"; then
 fi
 
 # Docker
-DOCKER_REPO="deb [arch=$ARCHITECTURE] https://download.docker.com/linux/debian $(. /etc/os-release && echo "$VERSION_CODENAME") stable"
+DOCKER_REPO="deb [arch=$ARCHITECTURE] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 if repositoryexists "$DOCKER_REPO"; then
-  curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - 
+  curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
   echo "$DOCKER_REPO" | sudo tee /etc/apt/sources.list.d/docker.list
-  sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  # sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 fi
 
 # Google Chrome
