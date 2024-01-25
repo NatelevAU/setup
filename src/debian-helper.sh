@@ -44,10 +44,11 @@ install () {
 url_install() {
   if ! packageexists "$1"; then
     echo "Installing $1..."
-    FILENAME="$1.deb"
+    TMP_DIR=$(mktemp -d)
+    FILENAME="$TMP_DIR/$1.deb"
     wget -q "$2" -O "$FILENAME"
-    sudo $INSTALL "./$FILENAME"
-    rm -rf "$FILENAME"
+    sudo $INSTALL "$FILENAME"
+    rm -rf "$TMP_DIR"
   fi
 }
 
