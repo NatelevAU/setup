@@ -122,7 +122,6 @@ install libffi-dev
 install nodejs
 script_install nvm "https://raw.githubusercontent.com/creationix/nvm/master/install.sh"
 install perl
-install python2.7-dev
 install python3-dev python3-pip
 
 # Install communication packages
