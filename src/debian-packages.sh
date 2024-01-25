@@ -32,7 +32,7 @@ if repositoryexists "$DOCKER_REPO"; then
 fi
 
 # Google Chrome
-CHROME_REPO="deb [arch=$ARCHITECTURE] signed-by=/usr/share/keyrings/google-chrome.gpg http://dl.google.com/linux/chrome/deb/ stable main"
+CHROME_REPO="deb http://dl.google.com/linux/chrome/deb/ stable main"
 if repositoryexists "$CHROME_REPO"; then
   curl -fSsL https://dl.google.com/linux/linux_signing_key.pub | \
   sudo gpg --dearmor | sudo tee /usr/share/keyrings/google-chrome.gpg >> /dev/null
