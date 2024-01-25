@@ -48,12 +48,6 @@ if repositoryexists "$POSTGRESQL_REPO"; then
   wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 fi
 
-# Signal
-SIGNAL_REPO="deb [arch=$ARCHITECTURE] https://updates.signal.org/desktop/apt $(. /etc/os-release && echo "$VERSION_CODENAME") main"
-if repositoryexists "$SIGNAL_REPO"; then
-  echo "$SIGNAL_REPO" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
-fi
-
 # Spotify
 SPOTIFY_REPO="deb http://repository.spotify.com stable non-free"
 if repositoryexists "$SPOTIFY_REPO"; then
@@ -133,7 +127,6 @@ install python3-dev python3-pip
 
 # Install communication packages
 url_install discord "https://discord.com/api/download?platform=linux&format=deb"
-install signal-desktop
 scan_url_install slack-desktop "https://slack.com/downloads/instructions/ubuntu"
 install teams-for-linux
 install telegram-desktop
