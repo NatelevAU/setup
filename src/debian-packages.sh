@@ -99,7 +99,7 @@ install_postman() {
 
 # Install packages required to install some other packages
 install gdebi-core
-install linux-headers-generic
+install linux-headers-$ARCHITECTURE
 
 # Install setup packages
 install rclone
