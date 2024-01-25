@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run general-setup.sh
-        run: ./general-setup.sh
+        run: ./setup.sh
