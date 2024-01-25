@@ -117,7 +117,7 @@ install_postman
 # Install dev packages
 install build-essential
 install clojure
-install default-jre openjdk-11-jdk
+install default-jre default-jdk
 install libffi-dev
 install nodejs
 script_install nvm "https://raw.githubusercontent.com/creationix/nvm/master/install.sh"
