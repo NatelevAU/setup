@@ -4,6 +4,7 @@
 
 # Custom Variables
 ARCHITECTURE=$(dpkg --print-architecture)
+DISTRO_CODENAME=$(lsb_release -cs)
 
 
 
@@ -24,7 +25,7 @@ if repositoryexists "$CODE_REPO"; then
 fi
 
 # Docker
-DOCKER_REPO="deb [arch=$ARCHITECTURE] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+DOCKER_REPO="deb [arch=$ARCHITECTURE] https://download.docker.com/linux/debian $DISTRO_CODENAME stable"
 if repositoryexists "$DOCKER_REPO"; then
   curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
   echo "$DOCKER_REPO" | sudo tee /etc/apt/sources.list.d/docker.list
@@ -42,7 +43,7 @@ if repositoryexists "$CHROME_REPO"; then
 fi
 
 # PostgreSQL
-POSTGRESQL_REPO="deb [arch=$ARCHITECTURE] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main"
+POSTGRESQL_REPO="deb [arch=$ARCHITECTURE] http://apt.postgresql.org/pub/repos/apt $DISTRO_CODENAME-pgdg main"
 if repositoryexists "$POSTGRESQL_REPO"; then
   sudo sh -c "echo $POSTGRESQL_REPO > /etc/apt/sources.list.d/pgdg.list"
   wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
@@ -71,7 +72,7 @@ fi
 # Virtualbox
 install_virtualbox() {
   if [[ ! -d "${HOME}/.config/VirtualBox" && ! -d "${HOME}/VirtualBox" ]]; then
-    scan_url_install virtualbox $(lsb_release -cs) "https://www.virtualbox.org/wiki/Linux_Downloads"
+    scan_url_install virtualbox $DISTRO_CODENAME "https://www.virtualbox.org/wiki/Linux_Downloads"
   fi
 }
 
