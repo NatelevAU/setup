@@ -71,7 +71,7 @@ fi
 # Virtualbox
 install_virtualbox() {
   if [[ ! -d "${HOME}/.config/VirtualBox" && ! -d "${HOME}/VirtualBox" ]]; then
-    scan_url_install virtualbox "https://www.virtualbox.org/wiki/Linux_Downloads"
+    scan_url_install virtualbox $(lsb_release -cs) "https://www.virtualbox.org/wiki/Linux_Downloads"
   fi
 }
 
@@ -127,7 +127,7 @@ install python3-dev python3-pip
 
 # Install communication packages
 url_install discord "https://discord.com/api/download?platform=linux&format=deb"
-scan_url_install slack-desktop "https://slack.com/downloads/instructions/ubuntu"
+scan_url_install slack-desktop slack-desktop "https://slack.com/downloads/instructions/ubuntu"
 install teams-for-linux
 install telegram-desktop
 url_install zoom "https://zoom.us/client/latest/zoom_$ARCHITECTURE.deb"

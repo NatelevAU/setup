@@ -54,11 +54,11 @@ url_install() {
 
 scan_url_install() {
   if ! packageexists "$1"; then
-    INSTALL_URL=$(wget -q "$2" -O - \
+    INSTALL_URL=$(wget -q "$3" -O - \
     | tr "\t\r\n'" '   "' \
     | grep -i -o '<a[^>]\+href[ ]*=[ \t]*"\(ht\|f\)tps\?:[^"]\+"' \
     | sed -e 's/^.*"\([^"]\+\)".*$/\1/g' \
-    | grep "$1")
+    | grep "$2")
     url_install "$1" "$INSTALL_URL"
   fi
 }
