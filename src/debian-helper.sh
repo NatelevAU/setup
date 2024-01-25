@@ -66,7 +66,7 @@ scan_url_install() {
 script_install() {
   if ! packageexists "$1"; then
     echo "Installing $1..."
-    sh <(curl -sSf "$2")
+    curl -o- "$2" | bash
   fi
 }
 
