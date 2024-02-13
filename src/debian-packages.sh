@@ -101,6 +101,9 @@ install_postman() {
 # Install packages required to install some other packages
 install gdebi-core
 install linux-headers-$ARCHITECTURE
+url_install mysql-apt-config "https://dev.mysql.com/get/mysql-apt-config_0.8.29-1_all.deb"
+
+update
 
 # Install setup packages
 install rclone
@@ -111,7 +114,7 @@ install awscli
 install docker-ce docker-ce-cli
 install git-all
 install leiningen # for clojure
-install mariadb-server
+install mysql-server
 install postgresql postgresql-contrib
 install_postman
 
